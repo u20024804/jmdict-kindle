@@ -1,7 +1,17 @@
+sudo: false
+dist: travis
+
 language: generic
 
-dist: travis
-sudo: required
+cache:
+  apt: true
+
+addons:
+  apt:
+    packages:
+    - python-cairo
+    - python-imaging
+    - p7zip
 
 env:
   global:
@@ -9,8 +19,6 @@ env:
   - PYTHON=/usr/bin/python # avoid /opt/python
 
 before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -qq -y --no-install-recommends python-cairo python-imaging p7zip
 - $PYTHON --version
 - mkdir kindlegen
 - wget -q -O - https://kindlegen.s3.amazonaws.com/kindlegen_linux_2.6_i386_v2_9.tar.gz | tar -xz -C kindlegen
